@@ -3,6 +3,10 @@ package com.nelioalves.workshopmongo.resources.util;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
+
 public class URL {
 
     public static String decodeParam(String text) {
@@ -10,6 +14,14 @@ public class URL {
             return URLDecoder.decode(text, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             return "";
+        }
+    }
+
+    public static LocalDate convertDate(String textDate, LocalDate defaultDate) {
+        try {
+            return LocalDate.parse(textDate);
+        } catch (DateTimeParseException e) {
+            return defaultDate;
         }
     }
 }
